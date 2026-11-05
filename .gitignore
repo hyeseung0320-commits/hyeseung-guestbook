@@ -1,0 +1,14 @@
+# 의존성
+node_modules/
+
+# 환경 변수 (비밀값 — 절대 커밋하지 않음)
+.env
+.env.*
+!.env.example
+
+# Netlify 로컬 캐시
+.netlify/
+
+# OS / 에디터
+.DS_Store
+Thumbs.db

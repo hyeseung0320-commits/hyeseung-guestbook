@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>김혜승 | 국민대학교 1학년 개인 포트폴리오 홈페이지</title>
+
+  <!-- SEO 기본 메타 -->
+  <meta name="description" content="국민대학교 1학년 김혜승의 개인 포트폴리오 홈페이지입니다. HTML/CSS와 GitHub Pages로 직접 만든 웹사이트와 갤러그 슈팅게임 등 작업물을 소개합니다.">
+  <link rel="canonical" href="https://hyeseung0320-commits.github.io/">
+
+  <!-- 파비콘 (이모지 SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪡</text></svg>">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="혜승's Space">
+  <meta property="og:title" content="김혜승 | 국민대학교 1학년 개인 포트폴리오 홈페이지">
+  <meta property="og:description" content="국민대학교 1학년 김혜승의 개인 포트폴리오 홈페이지입니다. HTML/CSS와 GitHub Pages로 직접 만든 웹사이트와 갤러그 슈팅게임 등 작업물을 소개합니다.">
+  <meta property="og:url" content="https://hyeseung0320-commits.github.io/">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="김혜승 | 국민대학교 1학년 개인 포트폴리오 홈페이지">
+  <meta name="twitter:description" content="국민대학교 1학년 김혜승의 개인 포트폴리오 홈페이지입니다. HTML/CSS와 GitHub Pages로 직접 만든 웹사이트와 갤러그 슈팅게임 등 작업물을 소개합니다.">
+
+  <style>
+    /* 다크 테마 (기본) */
+    :root,
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #38bdf8;
+      --text: #f8fafc;
+      --text-dim: #94a3b8;
+      --border: #334155;
+      --tag-bg: #1e293b;
+    }
+    /* 라이트 테마 */
+    [data-theme="light"] {
+      --bg: #f1f5f9;
+      --card-bg: #ffffff;
+      --accent: #0284c7;
+      --text: #0f172a;
+      --text-dim: #475569;
+      --border: #cbd5e1;
+      --tag-bg: #e0f2fe;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* 상단 메뉴 */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 8%;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+    .logo { font-size: 1.2rem; font-weight: bold; color: var(--accent); }
+    .nav-right { display: flex; align-items: center; }
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* 테마 토글 버튼 */
+    .theme-toggle {
+      margin-left: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .theme-toggle:hover { border-color: var(--accent); transform: scale(1.08); }
+
+    /* 자기소개 영역 */
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+    .profile-emoji { font-size: 70px; margin-bottom: 10px; }
+    header h1 { font-size: 2.1rem; margin-bottom: 10px; word-break: keep-all; }
+    .student-info { color: var(--accent); font-weight: bold; font-size: 1.05rem; margin-bottom: 15px; }
+    .intro-text { color: var(--text-dim); font-size: 1rem; max-width: 580px; margin: 0 auto; word-break: keep-all; line-height: 1.7; }
+    .intro-text p + p { margin-top: 12px; }
+
+    /* 태그 목록 */
+    .tags {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    /* 연락처 버튼 */
+    .contact { margin-top: 25px; }
+    .contact a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin: 0 10px;
+      transition: color 0.2s;
+    }
+    .contact a:hover { color: var(--accent); }
+
+    /* 프로젝트 메인 콘텐츠 */
+    .container { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--accent);
+      padding-left: 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 22px;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, border-color 0.2s, background-color 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+    /* 카드 썸네일 (이모지 배너) */
+    .card-thumb {
+      height: 120px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, rgba(56,189,248,0.18), rgba(56,189,248,0.04));
+      border: 1px solid var(--border);
+    }
+    .card h3 { color: var(--accent); margin-bottom: 10px; font-size: 1.15rem; }
+    .card p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 14px; line-height: 1.5; }
+    /* 카드 기술 태그 */
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .card-tag {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2px 8px;
+    }
+    .card .card-date { font-size: 0.78rem; color: var(--text-dim); margin-bottom: 14px; }
+    .card a.card-link {
+      display: inline-block;
+      padding: 8px 16px;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
+    /* 스크롤 등장 애니메이션 */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* 응원 하트 섹션 */
+    .cheer {
+      text-align: center;
+      padding: 10px 20px 20px;
+    }
+    .cheer p { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 16px; }
+    .heart-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.1s, background-color 0.3s;
+      font-family: inherit;
+    }
+    .heart-btn:hover { border-color: var(--accent); }
+    .heart-btn:active { transform: scale(0.95); }
+    .heart-btn .heart-icon {
+      font-size: 1.3rem;
+      transition: transform 0.25s;
+      display: inline-block;
+    }
+    /* 눌렀을 때 하트 톡 터지는 애니메이션 */
+    .heart-btn.pop .heart-icon { animation: heartPop 0.45s ease; }
+    @keyframes heartPop {
+      0%   { transform: scale(1); }
+      35%  { transform: scale(1.5); }
+      70%  { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+    .heart-btn .heart-count {
+      font-weight: bold;
+      color: var(--accent);
+      min-width: 20px;
+    }
+    .cheer .cheer-thanks {
+      margin-top: 14px;
+      font-size: 0.88rem;
+      color: var(--accent);
+      height: 20px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .cheer .cheer-thanks.show { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .heart-btn.pop .heart-icon { animation: none; }
+    }
+
+    /* 방명록 섹션 */
+    .guestbook { max-width: 720px; margin: 0 auto; padding: 30px 20px; }
+    .guestbook-form {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .guestbook-form .field { margin-bottom: 12px; }
+    .guestbook-form label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .guestbook-form input[type="text"],
+    .guestbook-form textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      resize: vertical;
+    }
+    .guestbook-form input[type="text"]:focus,
+    .guestbook-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .guestbook-form textarea { min-height: 80px; }
+    .gb-form-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .gb-counter { font-size: 0.8rem; color: var(--text-dim); }
+    .gb-counter.over { color: #f87171; font-weight: bold; }
+    .gb-submit {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .gb-submit:hover { opacity: 0.9; }
+    .gb-submit:active { transform: scale(0.97); }
+    .gb-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+    .gb-status {
+      font-size: 0.85rem;
+      margin-top: 10px;
+      min-height: 18px;
+    }
+    .gb-status.error { color: #f87171; }
+    .gb-status.success { color: var(--accent); }
+    .gb-list { display: flex; flex-direction: column; gap: 12px; }
+    .gb-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .gb-item-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .gb-item-name { font-weight: bold; color: var(--accent); font-size: 0.95rem; }
+    .gb-item-date { font-size: 0.75rem; color: var(--text-dim); white-space: nowrap; }
+    .gb-item-message { font-size: 0.92rem; color: var(--text); white-space: pre-wrap; word-break: break-word; }
+    .gb-empty, .gb-loading { text-align: center; color: var(--text-dim); font-size: 0.9rem; padding: 20px; }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 메뉴 -->
+  <nav>
+    <div class="logo">혜승's Space</div>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#about">소개</a>
+        <a href="#projects">작업물</a>
+        <a href="https://github.com/hyeseung0320-commits" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="테마 전환">🌙</button>
+    </div>
+  </nav>
+
+  <!-- 동기 대상 자기소개 섹션 -->
+  <header id="about">
+    <div class="profile-emoji">👋</div>
+    <h1>안녕하세요! 국민대 동기 여러분</h1>
+    <div class="student-info">국민대학교 1학년 · 김혜승 (학번: 20262072)</div>
+    
+    <div class="intro-text">
+      <p>반가워요! 수업을 들으며 나만의 웹사이트 제작에 도전하고 있는 1학년 김혜승입니다.</p>
+      <p>요즘은 <strong>GitHub</strong>를 활용해서 HTML 웹사이트를 직접 만들고 배포하는 방법을 차근차근 배우고 있어요!</p>
+      <p>새로운 걸 배우고 직접 만들어 보는 과정을 좋아해서, 작은 아이디어라도 코드로 구현해 보며 하나씩 완성해 나가는 재미에 푹 빠져 있어요.</p>
+      <p>이 공간은 제가 배운 것과 만든 작업물을 차곡차곡 쌓아 가는 곳이에요. 앞으로 더 멋진 결과물로 채워 나갈 테니 자주 놀러 와 주세요! 🙌</p>
+    </div>
+
+    <!-- 기술 및 태그 -->
+    <div class="tags">
+      <span class="tag">🎓 국민대학교</span>
+      <span class="tag">🐣 1학년 (20262072)</span>
+      <span class="tag">💻 HTML/CSS</span>
+      <span class="tag">🚀 GitHub Pages 배포 배우는 중</span>
+    </div>
+
+    <!-- 이메일 및 GitHub -->
+    <div class="contact">
+      <a href="mailto:hyeseunghyeseung@naver.com">✉️ hyeseunghyeseung@naver.com</a>
+      <a href="https://github.com/hyeseung0320-commits" target="_blank" rel="noopener noreferrer">🐙 GitHub 프로필 방문하기</a>
+    </div>
+  </header>
+
+  <!-- 작업 및 프로젝트 모음 -->
+  <main class="container" id="projects">
+    <h2 class="section-title reveal">My Projects</h2>
+    <div class="grid">
+      
+      <!-- 현재 작업: 내 사이트 만들기 -->
+      <div class="card reveal">
+        <div class="card-thumb">🌐</div>
+        <h3>내 개인 사이트 만들기</h3>
+        <p>수업을 들으며 만들고 있는 저의 첫 번째 포트폴리오 사이트입니다. HTML/CSS로 직접 디자인하고 GitHub Pages로 배포했어요. 계속해서 새로운 기능과 작업물을 업데이트해 나갈 예정이에요!</p>
+        <div class="card-tags">
+          <span class="card-tag">HTML</span>
+          <span class="card-tag">CSS</span>
+          <span class="card-tag">GitHub Pages</span>
+        </div>
+        <div class="card-date">📅 2026년 10월 ~ 진행 중</div>
+        <a class="card-link" href="https://github.com/hyeseung0320-commits/hyeseung0320-commits.github.io" target="_blank" rel="noopener noreferrer">소스 코드 보기</a>
+      </div>
+
+      <!-- 프로젝트: 갤러그 게임 -->
+      <div class="card reveal">
+        <div class="card-thumb">🚀</div>
+        <h3>꿀잼 슈팅게임 (Galaga)</h3>
+        <p>HTML5와 JavaScript를 활용해 만든 추억의 아케이드 갤러그 게임입니다. 적을 피하며 슈팅하는 간단한 조작으로, 심심할 때 언제든 직접 플레이해 보세요!</p>
+        <div class="card-tags">
+          <span class="card-tag">HTML5</span>
+          <span class="card-tag">JavaScript</span>
+          <span class="card-tag">Canvas</span>
+        </div>
+        <div class="card-date">📅 2026년</div>
+        <a class="card-link" href="/galaga/" target="_blank" rel="noopener noreferrer">게임 플레이하기</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 응원 하트 -->
+  <section class="cheer reveal">
+    <p>이 페이지가 마음에 드셨다면 하트로 응원해 주세요! 💙</p>
+    <button class="heart-btn" id="heartBtn" type="button" aria-label="응원 하트 누르기">
+      <span class="heart-icon">🤍</span>
+      <span class="heart-count" id="heartCount">0</span>
+    </button>
+    <div class="cheer-thanks" id="cheerThanks">응원해 주셔서 감사해요! 😊</div>
+  </section>
+
+  <!-- 방명록 -->
+  <section class="guestbook reveal" id="guestbook">
+    <h2 class="section-title">방명록</h2>
+
+    <form class="guestbook-form" id="gbForm" autocomplete="off">
+      <div class="field">
+        <label for="gbName">이름 (선택, 최대 20자)</label>
+        <input type="text" id="gbName" maxlength="20" placeholder="비워 두면 '익명'으로 남겨져요">
+      </div>
+      <div class="field">
+        <label for="gbMessage">메시지 (필수, 최대 200자)</label>
+        <textarea id="gbMessage" maxlength="200" placeholder="따뜻한 한마디를 남겨 주세요 💙" required></textarea>
+      </div>
+      <div class="gb-form-bottom">
+        <span class="gb-counter" id="gbCounter">0 / 200</span>
+        <button type="submit" class="gb-submit" id="gbSubmit">방명록 남기기</button>
+      </div>
+      <div class="gb-status" id="gbStatus" role="status" aria-live="polite"></div>
+    </form>
+
+    <div class="gb-list" id="gbList">
+      <div class="gb-loading" id="gbLoading">불러오는 중...</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 김혜승 (20262072). All rights reserved.</p>
+  </footer>
+
+  <script>
+    // 테마 토글: 저장된 설정 불러오기
+    (function () {
+      var root = document.documentElement;
+      var toggle = document.getElementById('themeToggle');
+      var saved = localStorage.getItem('theme');
+      if (saved) {
+        root.setAttribute('data-theme', saved);
+      }
+      function updateIcon() {
+        toggle.textContent = root.getAttribute('data-theme') === 'light' ? '☀️' : '🌙';
+      }
+      updateIcon();
+      toggle.addEventListener('click', function () {
+        var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateIcon();
+      });
+    })();
+
+    // 스크롤 등장 애니메이션
+    (function () {
+      var items = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      items.forEach(function (el) { observer.observe(el); });
+    })();
+
+    // 응원 하트 (브라우저 로컬 저장)
+    (function () {
+      var btn = document.getElementById('heartBtn');
+      var countEl = document.getElementById('heartCount');
+      var iconEl = btn.querySelector('.heart-icon');
+      var thanks = document.getElementById('cheerThanks');
+
+      var count = parseInt(localStorage.getItem('cheerCount') || '0', 10);
+      if (isNaN(count) || count < 0) { count = 0; }
+      countEl.textContent = count;
+      if (count > 0) { iconEl.textContent = '💙'; }
+
+      btn.addEventListener('click', function () {
+        count += 1;
+        localStorage.setItem('cheerCount', count);
+        countEl.textContent = count;
+        iconEl.textContent = '💙';
+
+        // 톡 터지는 애니메이션 재시작
+        btn.classList.remove('pop');
+        void btn.offsetWidth;
+        btn.classList.add('pop');
+
+        // 감사 메시지 잠깐 표시
+        thanks.classList.add('show');
+        clearTimeout(btn._thanksTimer);
+        btn._thanksTimer = setTimeout(function () {
+          thanks.classList.remove('show');
+        }, 2000);
+      });
+    })();
+
+    // 방명록 (Supabase + Netlify Function)
+    (function () {
+      var API = '/.netlify/functions/guestbook';
+      var MAX = 200;
+
+      var form = document.getElementById('gbForm');
+      var nameEl = document.getElementById('gbName');
+      var msgEl = document.getElementById('gbMessage');
+      var counter = document.getElementById('gbCounter');
+      var submit = document.getElementById('gbSubmit');
+      var status = document.getElementById('gbStatus');
+      var list = document.getElementById('gbList');
+
+      // 작성 시각을 사람이 읽기 좋은 형태로
+      function formatDate(iso) {
+        try {
+          var d = new Date(iso);
+          if (isNaN(d.getTime())) { return ''; }
+          var y = d.getFullYear();
+          var m = String(d.getMonth() + 1).padStart(2, '0');
+          var day = String(d.getDate()).padStart(2, '0');
+          var hh = String(d.getHours()).padStart(2, '0');
+          var mm = String(d.getMinutes()).padStart(2, '0');
+          return y + '.' + m + '.' + day + ' ' + hh + ':' + mm;
+        } catch (e) { return ''; }
+      }
+
+      // 글자 수 표시 + 버튼 활성/비활성
+      function updateCounter() {
+        var len = msgEl.value.length;
+        counter.textContent = len + ' / ' + MAX;
+        if (len > MAX) { counter.classList.add('over'); }
+        else { counter.classList.remove('over'); }
+        submit.disabled = (len === 0 || len > MAX);
+      }
+      msgEl.addEventListener('input', updateCounter);
+      updateCounter();
+
+      function setStatus(text, type) {
+        status.textContent = text || '';
+        status.className = 'gb-status' + (type ? ' ' + type : '');
+      }
+
+      // 목록 렌더링 (textContent로 XSS 방지)
+      function render(items) {
+        list.innerHTML = '';
+        if (!items || items.length === 0) {
+          var empty = document.createElement('div');
+          empty.className = 'gb-empty';
+          empty.textContent = '아직 방명록이 없어요. 첫 메시지를 남겨 주세요!';
+          list.appendChild(empty);
+          return;
+        }
+        items.forEach(function (it) {
+          var item = document.createElement('div');
+          item.className = 'gb-item';
+
+          var head = document.createElement('div');
+          head.className = 'gb-item-head';
+
+          var name = document.createElement('span');
+          name.className = 'gb-item-name';
+          name.textContent = it.name || '익명';
+
+          var date = document.createElement('span');
+          date.className = 'gb-item-date';
+          date.textContent = formatDate(it.created_at);
+
+          head.appendChild(name);
+          head.appendChild(date);
+
+          var message = document.createElement('div');
+          message.className = 'gb-item-message';
+          message.textContent = it.message || '';
+
+          item.appendChild(head);
+          item.appendChild(message);
+          list.appendChild(item);
+        });
+      }
+
+      // 최근 목록 불러오기
+      function load() {
+        list.innerHTML = '<div class="gb-loading">불러오는 중...</div>';
+        fetch(API, { method: 'GET' })
+          .then(function (res) {
+            if (!res.ok) { throw new Error('load failed'); }
+            return res.json();
+          })
+          .then(function (data) {
+            render(data.entries || []);
+          })
+          .catch(function () {
+            list.innerHTML = '<div class="gb-empty">방명록을 불러오지 못했어요. 새로고침 해 주세요.</div>';
+          });
+      }
+
+      // 작성
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = nameEl.value.trim();
+        var message = msgEl.value.trim();
+
+        if (message.length === 0) { setStatus('메시지를 입력해 주세요.', 'error'); return; }
+        if (message.length > MAX) { setStatus('메시지는 200자까지 쓸 수 있어요.', 'error'); return; }
+
+        submit.disabled = true;
+        setStatus('남기는 중...', '');
+
+        fetch(API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: name, message: message })
+        })
+          .then(function (res) {
+            return res.json().then(function (body) { return { ok: res.ok, body: body }; });
+          })
+          .then(function (r) {
+            if (!r.ok) { throw new Error((r.body && r.body.error) || 'submit failed'); }
+            nameEl.value = '';
+            msgEl.value = '';
+            updateCounter();
+            setStatus('등록됐어요! 😊', 'success');
+            load();
+            setTimeout(function () { setStatus('', ''); }, 2500);
+          })
+          .catch(function () {
+            setStatus('잠시 후 다시 시도해 주세요.', 'error');
+          })
+          .finally(function () {
+            updateCounter();
+          });
+      });
+
+      load();
+    })();
+  </script>
+
+</body>
+</html>
